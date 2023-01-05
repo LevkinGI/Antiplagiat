@@ -65,16 +65,16 @@ def train_test(x: np.array, y: np.array, test_size: float=0.3):
   return x_train, x_test, y_train, y_test
 
 def creat_lr():
-  # X, y = np.load('X.npy'), np.load('y.npy')
-  X_y = np.loadtxt('X and y.txt')
-  X, y = X_y[:, 0], X_y[:, 1]
+  X, y = np.load('X.npy'), np.load('y.npy')
+  # X_y = np.loadtxt('X and y.txt')
+  # X, y = X_y[:, 0], X_y[:, 1]
 
   x_train, x_test, y_train, y_test = train_test(X, y)
   logr = LogisticRegression()
   logr.fit(x_train, y_train, lr=0.1, num_epoch=30)
 
-  # preds = logr.predict(x_test)
-  # print(auc_pr(y_test, preds))
+  preds = logr.predict(x_test)
+  print(auc_pr(y_test, preds))
 
   with open('model.pkl', 'wb') as f:
     dill.dump(logr, f)

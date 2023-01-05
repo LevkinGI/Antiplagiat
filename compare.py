@@ -257,7 +257,7 @@ for line in lines:
     file1 = load_file(line[0])
     file2 = load_file(line[1])
     print(f'Считаем расстояние {lines.index(line) + 1} пары из {len(lines)}')
-    x.append(levenshtein_distance(file1, file2) / max(len(file1), len(file2)))
+    x.append(levenshtein_distance(file1, file2) / max(len(file1), len(file2), 1))
 x = np.array(x)
 preds = np.around(lr.predict(x), decimals=3)
 
